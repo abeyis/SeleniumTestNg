@@ -1,5 +1,6 @@
-package com.abeyis.demo.utils;
+package com.abeyis.demo.factory;
 
+import com.abeyis.demo.utils.ConfigurationReaderFile;
 import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -11,21 +12,14 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.safari.SafariOptions;
 
-import java.util.Objects;
-
-public class Driver {
+public class DriverFactory {
 
 
-    private static WebDriver driver;       // static variable: only one copy for all objects
+    private DriverFactory() {}
 
-    private Driver() {
-    }                 // private constructor : to prevent creating object from this class
-
-    public static WebDriver get() {     // no parameter, getting the browser type from Configuration.Properties
-
-        if (Objects.isNull(driver)) {
-            String browser = ConfigurationReader.get("browser");
-
+    public static WebDriver createDriver() {
+        WebDriver driver=null;
+        String browser= ConfigurationReaderFile.get("browser");
             switch (browser) {
                 case "chrome" -> {
                     ChromeOptions options = new ChromeOptions();
@@ -57,15 +51,6 @@ public class Driver {
                 }
                 default -> throw new IllegalStateException("Unexpected value: " + browser);
             }
-        }
         return driver;
-    }
-
-    public static void closeDriver() {
-        if (Objects.nonNull(driver)) {
-            driver.close();
-            driver.quit();
-            driver = null;
-        }
     }
 }
