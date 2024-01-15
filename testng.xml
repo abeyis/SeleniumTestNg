@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd"><suite name="All Test Suite"><test verbose="2" preserve-order="true" name="/Users/ismailsavcan/Desktop/Automation/demo"><classes><class name="com.abeyis.demo.tests.Test1"><methods><include name="search"/><include name="toolsMenu"/><include name="navigationToAllTools"/></methods></class></classes></test></suite>
